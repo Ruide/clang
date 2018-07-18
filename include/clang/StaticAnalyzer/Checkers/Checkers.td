@@ -94,6 +94,8 @@ def Debug : Package<"debug">;
 
 def CloneDetectionAlpha : Package<"clone">, InPackage<Alpha>, Hidden;
 
+def Privacy : Package<"privacy">, InPackage<Alpha>;
+
 //===----------------------------------------------------------------------===//
 // Core Checkers.
 //===----------------------------------------------------------------------===//
@@ -804,3 +806,15 @@ def UnixAPIPortabilityChecker : Checker<"UnixAPI">,
   DescFile<"UnixAPIChecker.cpp">;
 
 } // end optin.portability
+
+//===----------------------------------------------------------------------===//
+// Privacy checkers.
+//===----------------------------------------------------------------------===//
+
+let ParentPackage = Privacy in {
+
+def PrivacyScopeChecker : Checker<"PrivacyScope">,
+  HelpText<"Finds implicit and constant propagation privacy leakage">,
+  DescFile<"PrivacyScopeChecker.cpp">;
+
+} // end alpha.privacy
